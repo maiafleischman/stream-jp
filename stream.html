@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peronismo porteño · 4 claves</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;600;700;800&display=block">
+<style>
+/* Presentación para el stream "Peronismo porteño: 4 claves para 2027".
+   Pantallas 16:9 (1920x1080). → / espacio: avanzar · ←: volver · R: repetir animación · 1-9: ir a una pantalla · F: pantalla completa.
+   exportar.py saca de acá las placas (PNG, último cuadro) y los videos (MP4) de cada pantalla. */
+:root { --celeste:#5B8DB8; --mandarina:#F26B3A; --tinta:#1F2430; --papel:#F7F2E9; --verde:#2E8B6A;
+        --lla:#6C4C99; --pj:#009FE3; --pro:#FFD700; --apagado:#2C3342; --linea:#3A4254; --gris:#9AA1AE; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { height:100%; background:#0E1118; overflow:hidden; font-family:Inter, sans-serif; }
+#st { position:absolute; left:50%; top:50%; width:1920px; height:1080px; transform-origin:0 0; overflow:hidden; }
+.sc { position:absolute; inset:0; display:none; color:var(--papel); background:var(--tinta); }
+.sc.on { display:block; }
+.sc.celeste { background:var(--celeste); }
+.mono { font-family:"IBM Plex Mono", monospace; font-weight:500; letter-spacing:.06em; text-transform:uppercase; }
+.dis { font-family:"Bricolage Grotesque", sans-serif; font-weight:800; letter-spacing:-.03em; line-height:.98; }
+.dis.m { font-weight:500; }
+.pilar { position:absolute; left:96px; top:64px; font-size:26px; color:var(--celeste); }
+.celeste .pilar { color:var(--papel); }
+.pin { position:absolute; right:84px; top:46px; width:78px; }
+.fuente { position:absolute; left:96px; right:420px; bottom:44px; font-size:17px; line-height:1.45; color:var(--gris); text-transform:none; letter-spacing:.02em; }
+.usuario { position:absolute; right:96px; bottom:44px; font-size:22px; color:var(--celeste); }
+.celeste .usuario, .celeste .fuente { color:var(--papel); }
+.clave { display:inline-block; background:var(--mandarina); color:var(--tinta); border-radius:40px; padding:10px 26px; font-size:24px; }
+.tit { position:absolute; left:96px; top:128px; font-size:84px; }
+.tit b, .cel { color:var(--celeste); }
+.man { color:var(--mandarina); }
+.txt { font-size:32px; line-height:1.35; }
+.num { font-family:"Bricolage Grotesque", sans-serif; font-weight:800; letter-spacing:-.04em; line-height:.9; }
+.ctl { position:absolute; display:flex; gap:12px; z-index:20; }
+.ctl button { font:500 22px "IBM Plex Mono", monospace; letter-spacing:.04em; background:transparent; color:var(--papel); border:2px solid var(--linea);
+  border-radius:40px; padding:10px 22px; cursor:pointer; }
+.ctl button[aria-pressed="true"] { background:var(--celeste); border-color:var(--celeste); color:var(--tinta); }
+.ctl button:hover { border-color:var(--celeste); }
+body.render .ctl, body.render .solo-vivo { display:none !important; }
+body:not(.render) .solo-render { display:none !important; }
+svg text { font-family:"IBM Plex Mono", monospace; font-weight:500; }
+.com { stroke:var(--tinta); stroke-width:3; cursor:pointer; transition:filter .2s; }
+.com:hover { filter:brightness(1.15); }
+.lab { font-size:30px; fill:var(--papel); text-anchor:middle; pointer-events:none; }
+.ficha { position:absolute; background:var(--apagado); border-radius:18px; padding:26px 30px; font-size:24px; line-height:1.4; }
+.ficha b { font-family:"Bricolage Grotesque"; font-size:36px; display:block; margin-bottom:6px; }
+.marcador { fill:none; stroke:var(--mandarina); stroke-width:9; stroke-linecap:round; stroke-linejoin:round; }
+#ayuda { position:fixed; left:50%; bottom:14px; transform:translateX(-50%); font:500 14px "IBM Plex Mono", monospace; color:#9AA1AE;
+  background:rgba(0,0,0,.55); padding:8px 16px; border-radius:20px; transition:opacity .6s; z-index:50; }
+body.render #ayuda { display:none; }
+/* barras horizontales */
+.hb { display:grid; grid-template-columns:330px 1fr 190px; align-items:center; gap:22px; margin-bottom:26px; }
+.hb .l { font-size:27px; line-height:1.2; }
+.hb .t { height:56px; background:var(--apagado); border-radius:10px; overflow:hidden; }
+.hb .f { height:100%; width:0; border-radius:10px; }
+.hb .v { font:500 30px "IBM Plex Mono", monospace; text-align:right; }
+/* waffle */
+.waffle { display:grid; grid-template-columns:repeat(10, 40px); gap:12px; }
+.waffle i { width:40px; height:40px; border-radius:50%; background:var(--apagado); }
+.waffle i.si { background:var(--celeste); }
+input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:14px; border-radius:8px; background:var(--apagado); outline:none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:44px; height:44px; border-radius:50%; background:var(--mandarina); border:5px solid var(--papel); cursor:pointer; }
+</style></head>
+<body>
+<div id="st">
+
+<!-- 1 · PORTADA -->
+<section class="sc celeste" data-dur="6">
+  <div class="pilar mono">Estrategias</div><img class="pin" src="../../logo/icono-fondo-celeste.png" alt="">
+  <div style="position:absolute;left:96px;top:200px;width:1080px">
+    <div class="mono" data-in=".2" style="font-size:30px;color:var(--tinta);margin-bottom:30px">Stream · Ciudad de Buenos Aires</div>
+    <div class="dis" data-in=".4" style="font-size:124px;color:var(--papel)">Peronismo<br>porteño:</div>
+    <div class="dis" data-in=".9" style="font-size:124px;color:var(--tinta);position:relative;display:inline-block;white-space:nowrap">4 claves para 2027
+      <svg viewBox="0 0 1000 60" style="position:absolute;left:0;bottom:-38px;width:100%;height:60px;overflow:visible"><path id="sub0" class="marcador" d="M8 34 C 200 14, 420 46, 620 26 S 900 18, 992 30"/></svg>
+    </div>
+    <div class="txt" data-in="1.6" style="margin-top:64px;color:var(--papel);max-width:940px">El sur que dejó de ir a votar, el voto en blanco, el voto migrante y las comunas que se ganan por una cuadra.</div>
+  </div>
+  <svg id="mapa0" style="position:absolute;right:110px;top:170px;height:760px;width:691px"></svg>
+  <div class="usuario mono" style="left:96px;right:auto;color:var(--papel)">@maiencriollo</div>
+</section>
+
+<!-- 2 · DÓNDE ESTAMOS -->
+<section class="sc" data-dur="8">
+  <div class="pilar mono">Datos electorales</div><img class="pin" src="../../logo/icono-sin-fondo.png" alt="">
+  <div class="tit dis" data-in=".2" style="width:1000px">Mayo de 2025: el peronismo salió segundo por <b>45.407 votos</b></div>
+  <div style="position:absolute;left:96px;top:520px;width:790px" id="barras1"></div>
+  <svg id="mapa1" style="position:absolute;right:300px;top:150px;height:800px;width:727px"></svg>
+  <div class="ficha" id="ficha1" style="right:84px;top:200px;width:300px" data-in="1.2"></div>
+  <div data-in="2.2" style="position:absolute;right:84px;top:800px;width:300px;font-size:26px;line-height:1.6">
+    <div><span style="color:var(--lla)">■</span> LLA: 9 comunas</div><div><span style="color:var(--pj)">■</span> Es Ahora: 6 comunas</div></div>
+  <div class="fuente mono">Fuente: Tribunal Electoral de la Ciudad, escrutinio definitivo de legisladores/as, 18/05/2025 (Resolución 30.5). % sobre votos afirmativos (IDECBA).</div>
+  <div class="usuario mono">@maiencriollo</div>
+</section>
+
+<!-- 3 · CLAVE 1: PARTICIPACIÓN -->
+<section class="sc" data-dur="9">
+  <div class="pilar mono">Datos electorales</div><img class="pin" src="../../logo/icono-sin-fondo.png" alt="">
+  <div style="position:absolute;left:96px;top:126px" data-in=".1"><span class="clave mono">Clave 1 · Participación</span></div>
+  <div class="tit dis" data-in=".3" style="top:200px;width:1700px">En 2019 el sur votaba más que el norte.<br><b>Hoy vota menos.</b></div>
+  <svg id="graf2" viewBox="0 0 1100 560" style="position:absolute;left:70px;top:420px;width:1100px;height:560px"></svg>
+  <div style="position:absolute;left:1260px;top:460px;width:560px">
+    <div data-in="3.6"><div class="num man" style="font-size:150px" id="n2a">−13,9</div><div class="txt">puntos cayó la participación en el <b class="man">sur</b> (Comunas 4 y 8)</div></div>
+    <div data-in="4.6" style="margin-top:44px"><div class="num cel" style="font-size:96px">−10,5</div><div class="txt">en el <b class="cel">norte</b> (2, 12, 13 y 14)</div></div>
+  </div>
+  <div class="fuente mono">IDECBA, generales locales 2019, 2021 y 2023 (electores argentinos). Oct. 2025: estimación propia con los votos para Diputados nacionales (DINE) sobre el padrón 2023. Promedios ponderados por electores.</div>
+  <div class="usuario mono">@maiencriollo</div>
+</section>
+
+<!-- 4 · CLAVE 1: EL DATO -->
+<section class="sc" data-dur="9">
+  <div class="pilar mono">Datos electorales</div><img class="pin" src="../../logo/icono-sin-fondo.png" alt="">
+  <div style="position:absolute;left:96px;top:126px" data-in=".1"><span class="clave mono">Clave 1 · Participación</span></div>
+  <div class="tit dis" data-in=".3" style="top:200px;width:1000px">Los que el sur dejó de votar son <b>tantos como la diferencia</b></div>
+  <div style="position:absolute;left:96px;top:520px;width:790px">
+    <div class="hb" data-in="1.2"><div class="l">Vecinos del sur que votaban en 2019 y en 2025 no</div><div class="t"><div class="f" id="b3a" style="background:var(--mandarina)"></div></div><div class="v" id="v3a">45.618</div></div>
+    <div class="hb" data-in="1.6"><div class="l">Diferencia entre LLA y Es Ahora (mayo 2025)</div><div class="t"><div class="f" id="b3b" style="background:var(--celeste)"></div></div><div class="v">45.407</div></div>
+    <div class="txt" data-in="4.2" style="margin-top:36px;font-size:28px;color:var(--papel)"><span class="man">Ojo:</span> no volverían todos a votar al peronismo. En el sur, en 2025, lo votó 1 de cada 3. La pelea no es solo convencer: es que la gente vaya.</div>
+  </div>
+  <svg id="mapa3" style="position:absolute;right:290px;top:190px;height:760px;width:691px"></svg>
+  <div class="ficha" id="ficha3" style="right:84px;top:220px;width:300px" data-in="2.4"></div>
+  <div class="mono" data-in="2.6" style="position:absolute;right:84px;top:800px;width:300px;font-size:20px;line-height:1.5;color:var(--gris)">Cuánto cayó la participación en cada comuna, 2019 → oct. 2025. Tocá una.</div>
+  <div class="fuente mono">Cálculo propio: electores 2023 × (participación 2019 − participación oct. 2025), Comunas 4 y 8. IDECBA y DINE. Diferencia: Tribunal Electoral, escrutinio definitivo.</div>
+  <div class="usuario mono">@maiencriollo</div>
+</section>
+
+<!-- 5 · CLAVE 2: BLANCO -->
+<section class="sc" data-dur="10">
+  <div class="pilar mono">Datos electorales</div><img class="pin" src="../../logo/icono-sin-fondo.png" alt="">
+  <div style="position:absolute;left:96px;top:126px" data-in=".1"><span class="clave mono">Clave 2 · Voto en blanco</span></div>
+  <div class="tit dis" data-in=".3" style="top:200px;width:1700px">En octubre, el sur votó <b>casi el doble en blanco</b> que el norte</div>
+  <svg id="graf4" viewBox="0 0 1500 560" style="position:absolute;left:80px;top:430px;width:1340px;height:500px"></svg>
+  <div class="ctl" style="left:96px;top:390px" id="ctl4">
+    <button data-k="b21">2021 · Legislatura</button><button data-k="bmay">Mayo 2025 · Legislatura</button><button data-k="boct">Oct. 2025 · Diputados</button></div>
+  <div style="position:absolute;right:96px;top:470px;width:300px;text-align:right">
+    <div data-in="6.4"><div class="num man" style="font-size:120px">6,7%</div><div class="txt" style="font-size:27px">sur (4 y 8)</div></div>
+    <div data-in="6.9" style="margin-top:30px"><div class="num cel" style="font-size:84px">3,8%</div><div class="txt" style="font-size:27px">norte (2, 12, 13 y 14)</div></div>
+  </div>
+  <div class="fuente mono">2021 y mayo 2025: Legislatura porteña (IDECBA). Octubre 2025: Diputados nacionales (DINE). % de votos en blanco por comuna. En 2021 era parejo en toda la Ciudad.</div>
+  <div class="usuario mono">@maiencriollo</div>
+</section>
+
+<!-- 6 · CLAVE 3: VOTO MIGRANTE -->
+<section class="sc" data-dur="9">
+  <div class="pilar mono">Datos electorales</div><img class="pin" src="../../logo/icono-sin-fondo.png" alt="">
+  <div style="position:absolute;left:96px;top:126px" data-in=".1"><span class="clave mono">Clave 3 · Voto migrante</span></div>
+  <div style="position:absolute;left:96px;top:210px" data-in=".3"><span class="num cel" style="font-size:200px" id="n5">446.790</span></div>
+  <div class="dis m" data-in=".6" style="position:absolute;left:96px;top:420px;font-size:56px;width:1000px">extranjeros que viven en la Ciudad podían votar <b class="dis" style="color:var(--mandarina)">y no fueron</b></div>
+  <div style="position:absolute;left:96px;top:620px;width:1040px" id="barras5"></div>
+  <div style="position:absolute;right:120px;top:260px;width:520px" data-in="1">
+    <div class="waffle" id="waffle"></div>
+    <div class="txt" style="margin-top:30px;font-size:30px">De cada 100 extranjeros del padrón, votaron <b class="cel">15</b>. Entre los argentinos, 62.</div>
+  </div>
+  <div class="fuente mono">Padrón: 524.040 extranjeros (Tribunal Electoral e IDECBA). Votaron 77.250 (IDECBA, Elecciones 2025, cuadros C.1 y C.2). No fueron: 524.040 − 77.250. Votos por lista: escrutinio definitivo, legisladores/as 2025.</div>
+  <div class="usuario mono">@maiencriollo</div>
+</section>
+
+<!-- 7 · CLAVE 3: SIMULADOR -->
+<section class="sc" data-dur="10">
+  <div class="pilar mono">Datos electorales</div><img class="pin" src="../../logo/icono-sin-fondo.png" alt="">
+  <div style="position:absolute;left:96px;top:126px" data-in=".1"><span class="clave mono">Clave 3 · Voto migrante</span></div>
+  <div class="tit dis" data-in=".3" style="top:200px;width:1700px">¿Y si fueran a votar más extranjeros?</div>
+  <div style="position:absolute;left:96px;top:360px;width:820px" data-in=".8">
+    <div class="txt" style="font-size:30px">Van a votar <b class="num man" style="font-size:64px" id="p6">14,8 %</b> de los extranjeros</div>
+    <input type="range" id="r6" min="14.8" max="62.3" step="0.1" value="14.8" style="margin:30px 0 14px">
+    <div class="mono" style="display:flex;justify-content:space-between;font-size:18px;color:var(--gris)"><span>2025 · 14,8 %</span><span>2019 · 43 %</span><span>Como los argentinos · 62,3 %</span></div>
+    <div class="mono" style="font-size:22px;margin-top:44px;color:var(--gris)">Los que se suman votan…</div>
+    <div class="ctl" style="position:static;margin-top:14px;white-space:nowrap" id="ctl6"><button data-k="ext">como los extranjeros que ya votaron</button><button data-k="c8">como la Comuna 8</button></div>
+    <div class="solo-render" style="font-size:28px;margin-top:14px;display:inline-block;background:var(--celeste);color:var(--tinta);border-radius:40px;padding:10px 24px;font-family:IBM Plex Mono;font-weight:500">como los extranjeros que ya votaron</div>
+  </div>
+  <div style="position:absolute;left:1020px;top:380px;width:800px" data-in="1.2">
+    <div class="mono" style="font-size:22px;color:var(--gris);margin-bottom:24px">Votos nuevos: <span id="nv6" style="color:var(--papel)">0</span></div>
+    <div id="barras6"></div>
+    <div class="txt" id="dif6" style="margin-top:20px;font-size:34px"></div>
+    <div class="txt" id="emp6" style="margin-top:26px;font-size:26px;color:var(--gris)"></div>
+  </div>
+  <div class="txt" data-in="6.5" style="position:absolute;left:96px;top:860px;width:1700px;font-size:28px"><span class="man">El dato:</span> los extranjeros que votaron en 2025 eligieron más a La Libertad Avanza (40,1 %) que el promedio de la Ciudad (30,7 %). Más participación no es automáticamente más peronismo.</div>
+  <div class="fuente mono">Simulación propia: votos nuevos = 524.040 × participación − 77.250, repartidos según IDECBA (G.11) o según el resultado de la Comuna 8. El resto de los votos queda igual.</div>
+  <div class="usuario mono">@maiencriollo</div>
+</section>
+
+<!-- 8 · CLAVE 4: COMUNAS POR UNA CUADRA -->
+<section class="sc" data-dur="9">
+  <div class="pilar mono">Datos electorales</div><img class="pin" src="../../logo/icono-sin-fondo.png" alt="">
+  <div style="position:absolute;left:96px;top:126px" data-in=".1"><span class="clave mono">Clave 4 · El mapa del medio</span></div>
+  <div class="tit dis" data-in=".3" style="top:200px;width:980px">Cuatro comunas se definieron por <b>1.620 votos</b> entre todas</div>
+  <div style="position:absolute;left:96px;top:470px;width:900px" id="lista7"></div>
+  <div class="txt" data-in="5.2" style="position:absolute;left:96px;top:850px;width:900px;font-size:28px"><span class="man">Y el centro cambió:</span> las Comunas 3, 5, 9 y 15 eran de Juntos por el Cambio en 2023. En 2025 las ganó Es Ahora.</div>
+  <svg id="mapa7" style="position:absolute;right:120px;top:120px;height:860px;width:782px"></svg>
+  <div class="fuente mono">Tribunal Electoral de la Ciudad, escrutinio definitivo de legisladores/as 2025. 2023: Jefatura de Gobierno, primera vuelta.</div>
+  <div class="usuario mono">@maiencriollo</div>
+</section>
+
+<!-- 9 · CIERRE -->
+<section class="sc celeste" data-dur="8">
+  <div class="pilar mono">Estrategias</div><img class="pin" src="../../logo/icono-fondo-celeste.png" alt="">
+  <div class="dis" data-in=".2" style="position:absolute;left:96px;top:150px;font-size:110px;color:var(--papel)">Las 4 claves para 2027</div>
+  <div style="position:absolute;left:96px;top:330px;width:1700px" id="lista8"></div>
+  <div class="dis" data-in="4" style="position:absolute;left:96px;top:870px;font-size:64px;color:var(--tinta)">¿Cuál pesa más? <span style="color:var(--papel)">Escribilo en el chat 👇</span></div>
+  <div class="usuario mono" style="color:var(--papel)">@maiencriollo</div>
+</section>
+
+</div>
+<div id="ayuda">→ avanzar · ← volver · R repetir · F pantalla completa</div>
+<script src="mapa.js"></script>
+<script>
+const fmt = n => Math.round(n).toLocaleString("es-AR");
+const dec = (n, d = 1) => n.toLocaleString("es-AR", { minimumFractionDigits:d, maximumFractionDigits:d });
+const cl = x => Math.max(0, Math.min(1, x));
+const E = (t, a, b) => { const k = cl((t - a) / (b - a)); return 1 - Math.pow(1 - k, 3); };
+const NS = "http://www.w3.org/2000/svg";
+const mk = (tag, at = {}, par) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); if (par) par.appendChild(e); return e; };
+const $ = s => document.querySelector(s);
+const C = { lla:"#6C4C99", ea:"#009FE3", pro:"#FFD700", cel:"#5B8DB8", man:"#F26B3A", pap:"#F7F2E9", tin:"#1F2430", apa:"#2C3342" };
+
+/* ---------- Datos ---------- */
+const RES = Object.fromEntries(window.RES.map(r => [r.c, r]));
+// IDECBA (participación de electores argentinos), DINE (oct. 2025) e informe propio; electores 2023
+const COM = {
+ 1:{p19:73.4,p21:65.9,p23:69.6,p25:61.7,b21:1.2,bmay:1.8,boct:5.1},  2:{p19:77.3,p21:71.2,p23:73.8,p25:66.1,b21:1.0,bmay:1.5,boct:3.5},
+ 3:{p19:76.4,p21:69.4,p23:73.4,p25:65.1,b21:1.3,bmay:2.0,boct:5.2},  4:{p19:79.8,p21:71.5,p23:76.1,p25:67.0,b21:1.3,bmay:2.0,boct:6.3},
+ 5:{p19:80.6,p21:74.2,p23:77.9,p25:70.0,b21:1.2,bmay:1.9,boct:4.6},  6:{p19:82.3,p21:76.7,p23:79.4,p25:72.8,b21:1.2,bmay:1.9,boct:3.9},
+ 7:{p19:80.6,p21:73.8,p23:77.4,p25:69.1,b21:1.3,bmay:2.0,boct:5.0},  8:{p19:81.2,p21:71.5,p23:76.7,p25:65.9,b21:1.3,bmay:2.1,boct:7.1},
+ 9:{p19:82.5,p21:75.2,p23:79.1,p25:71.1,b21:1.3,bmay:2.0,boct:5.2}, 10:{p19:82.6,p21:76.5,p23:79.6,p25:72.3,b21:1.2,bmay:2.1,boct:4.7},
+11:{p19:82.8,p21:77.1,p23:80.1,p25:73.3,b21:1.2,bmay:2.0,boct:4.3}, 12:{p19:83.1,p21:77.2,p23:79.9,p25:73.4,b21:1.1,bmay:1.9,boct:4.3},
+13:{p19:80.3,p21:74.4,p23:76.6,p25:70.1,b21:1.1,bmay:1.7,boct:3.6}, 14:{p19:78.4,p21:72.1,p23:74.5,p25:67.1,b21:1.1,bmay:1.6,boct:3.6},
+15:{p19:80.3,p21:74.0,p23:77.5,p25:70.4,b21:1.3,bmay:2.0,boct:4.4} };
+const SUR = [4, 8], NORTE = [2, 12, 13, 14];
+const SERIE = { sur:[80.4, 71.5, 76.4, 66.5], norte:[79.9, 73.9, 76.3, 69.4] };
+const TOT = { lla:495966, ea:450559, pro:262027 };
+const PADRON_EXT = 524040, VOTARON_EXT = 77250, NO_FUERON = PADRON_EXT - VOTARON_EXT;
+const REPARTO = { ext:{ lla:.401, ea:.273 }, c8:{ lla:RES[8].lla / RES[8].total, ea:RES[8].ea / RES[8].total } };
+
+/* ---------- Mapa ---------- */
+function mapa(sel) {
+  const svg = $(sel); svg.setAttribute("viewBox", window.MAPA.viewBox);
+  const g = mk("g", {}, svg), gl = mk("g", {}, svg), P = {}, L = {};
+  window.MAPA.paths.forEach(p => {
+    P[p.comuna] = mk("path", { d:p.d, class:"com", fill:C.apa }, g);
+    L[p.comuna] = mk("text", { x:p.cx, y:p.cy + 11, class:"lab" }, gl); L[p.comuna].textContent = p.comuna;
+  });
+  return { P, L, svg };
+}
+const ganador = c => (RES[c].lla > RES[c].ea ? "lla" : "ea");
+const mezcla = (a, b, k) => { const h = x => [1, 3, 5].map(i => parseInt(x.slice(i, i + 2), 16)); const A = h(a), B = h(b);
+  return "#" + A.map((v, i) => Math.round(v + (B[i] - v) * k).toString(16).padStart(2, "0")).join(""); };
+
+/* ---------- Pantallas ---------- */
+const S = [];
+
+// 1 · Portada: el mapa aparece comuna por comuna, el sur en mandarina
+(() => {
+  const m = mapa("#mapa0"); const sub = $("#sub0"); const len = 1000;
+  sub.style.strokeDasharray = len;
+  Object.values(m.L).forEach(l => l.style.display = "none");
+  S[0] = { set(t) {
+    sub.style.strokeDashoffset = len * (1 - E(t, 1.4, 2.4));
+    for (let c = 1; c <= 15; c++) {
+      const k = E(t, .6 + c * .12, 1.1 + c * .12);
+      m.P[c].style.opacity = k; m.P[c].style.stroke = C.cel;
+      const sur = SUR.includes(c) && t > 3;
+      m.P[c].setAttribute("fill", sur ? mezcla(C.pap, C.man, E(t, 3, 3.8)) : C.pap);
+    }
+  } };
+})();
+
+// 2 · Dónde estamos: barras y mapa de ganadores
+(() => {
+  const B = [["La Libertad Avanza", TOT.lla, 30.7, C.lla], ["Es Ahora Buenos Aires", TOT.ea, 27.9, C.ea], ["Buenos Aires Primero", TOT.pro, 16.2, C.pro]];
+  $("#barras1").innerHTML = B.map(([n, v, p, c], i) => `<div class="hb" data-in="${.8 + i * .3}"><div class="l">${n}</div><div class="t"><div class="f" style="background:${c}"></div></div><div class="v">${dec(p)} %</div></div>`).join("");
+  const fills = [...document.querySelectorAll("#barras1 .f")];
+  const m = mapa("#mapa1"); let sel = 8;
+  const ficha = c => { const r = RES[c], pc = k => dec(r[k] / r.total * 100);
+    $("#ficha1").innerHTML = `<b>Comuna ${c}</b><span style="color:${C.lla}">■</span> LLA ${pc("lla")} %<br><span style="color:${C.ea}">■</span> Es Ahora ${pc("ea")} %<br><span style="color:${C.pro}">■</span> BA Primero ${pc("pro")} %<br><span class="mono" style="font-size:19px;color:var(--gris)">Diferencia: ${fmt(Math.abs(r.lla - r.ea))} votos</span>`; };
+  for (let c = 1; c <= 15; c++) m.P[c].addEventListener("click", () => { sel = c; ficha(c); S[1].set(99); });
+  ficha(sel);
+  S[1] = { set(t) {
+    B.forEach(([, , p], i) => fills[i].style.width = (p / 34 * 100 * E(t, 1 + i * .3, 2.4 + i * .3)) + "%");
+    for (let c = 1; c <= 15; c++) {
+      const k = E(t, 1.6 + c * .1, 2.1 + c * .1);
+      m.P[c].setAttribute("fill", mezcla(C.apa, C[ganador(c)], k));
+      m.P[c].style.stroke = c === sel && t > 3 ? C.pap : C.tin; m.P[c].style.strokeWidth = c === sel && t > 3 ? 7 : 3;
+    }
+  } };
+})();
+
+// 3 · Clave 1: sur vs norte
+(() => {
+  const svg = $("#graf2"), X = [270, 530, 790, 1050], Y = v => 500 - (v - 60) / 25 * 440;
+  [60, 65, 70, 75, 80, 85].forEach(v => { mk("line", { x1:100, x2:1080, y1:Y(v), y2:Y(v), stroke:"#3A4254", "stroke-width":1.5 }, svg);
+    mk("text", { x:84, y:Y(v) + 7, fill:"#9AA1AE", "font-size":20, "text-anchor":"end" }, svg).textContent = v + "%"; });
+  ["2019", "2021", "2023", "Oct. 2025"].forEach((a, i) => mk("text", { x:X[i], y:548, fill:"#F7F2E9", "font-size":24, "text-anchor":"middle" }, svg).textContent = a);
+  const linea = (k, col) => {
+    const d = SERIE[k].map((v, i) => (i ? "L" : "M") + X[i] + " " + Y(v)).join(" ");
+    const p = mk("path", { d, fill:"none", stroke:col, "stroke-width":9, "stroke-linecap":"round", "stroke-linejoin":"round" }, svg);
+    const len = p.getTotalLength(); p.style.strokeDasharray = len;
+    const pts = SERIE[k].map((v, i) => { const g = mk("g", {}, svg); mk("circle", { cx:X[i], cy:Y(v), r:13, fill:col }, g);
+      const iz = i === 0; mk("text", { x:iz ? X[i] - 30 : X[i], y:iz ? Y(v) + (k === "sur" ? -12 : 34) : Y(v) + (k === "sur" ? 48 : -26), fill:col, "font-size":26, "text-anchor":iz ? "end" : "middle" }, g).textContent = dec(v); return g; });
+    return { p, len, pts };
+  };
+  const n = linea("norte", C.cel), s = linea("sur", C.man);
+  const et = [mk("text", { x:1080, y:Y(69.4) - 4, fill:C.cel, "font-size":28 }, svg), mk("text", { x:1080, y:Y(66.5) + 22, fill:C.man, "font-size":28 }, svg)];
+  et[0].textContent = "Norte"; et[1].textContent = "Sur"; et.forEach(e => e.setAttribute("text-anchor", "start"));
+  svg.setAttribute("viewBox", "0 0 1200 560"); svg.style.width = "1150px";
+  const circ = mk("ellipse", { cx:X[0] - 40, cy:Y(80.2), rx:110, ry:56, class:"marcador", "stroke-width":6 }, svg); const cl0 = 2 * Math.PI * 85; circ.style.strokeDasharray = cl0;
+  S[2] = { set(t) {
+    [n, s].forEach((o, j) => { const k = E(t, 1 + j * .3, 3.2 + j * .3); o.p.style.strokeDashoffset = o.len * (1 - k);
+      o.pts.forEach((g, i) => g.style.opacity = i === 0 ? cl(k * 20) : cl((k * 3 - i + .1) * 6)); });
+    circ.style.strokeDashoffset = cl0 * (1 - E(t, 5.4, 6.2)); circ.style.opacity = t > 5.4 ? 1 : 0;
+    et.forEach(e => e.style.opacity = E(t, 3.2, 3.8));
+  } };
+})();
+
+// 4 · Clave 1: el dato + mapa de la caída
+(() => {
+  const m = mapa("#mapa3"); let sel = 8;
+  const caida = c => COM[c].p25 - COM[c].p19;
+  const ficha = c => { const d = COM[c];
+    $("#ficha3").innerHTML = `<b>Comuna ${c}</b>2019: ${dec(d.p19)} %<br>Oct. 2025: ${dec(d.p25)} %<br><span class="man" style="font-family:Bricolage Grotesque;font-weight:800;font-size:44px">${dec(caida(c)).replace("-", "−")}</span> <span style="font-size:20px">puntos</span>`; };
+  for (let c = 1; c <= 15; c++) { m.P[c].addEventListener("click", () => { sel = c; ficha(c); S[3].set(99); }); m.L[c].style.fontSize = "26px"; }
+  ficha(sel);
+  S[3] = { set(t) {
+    $("#b3a").style.width = (45618 / 48000 * 100 * E(t, 1.6, 3.4)) + "%";
+    $("#b3b").style.width = (45407 / 48000 * 100 * E(t, 2.2, 4)) + "%";
+    $("#v3a").textContent = fmt(45618 * E(t, 1.6, 3.4));
+    for (let c = 1; c <= 15; c++) {
+      const k = Math.pow(cl((-caida(c) - 9.4) / 6), 1.6); // de 9,5 a 15,3 puntos
+      m.P[c].setAttribute("fill", mezcla(C.apa, mezcla("#3E4659", C.man, k), E(t, 1.8 + c * .08, 2.6 + c * .08)));
+      m.P[c].style.stroke = c === sel && t > 3 ? C.pap : C.tin; m.P[c].style.strokeWidth = c === sel && t > 3 ? 7 : 3;
+    }
+  } };
+})();
+
+// 5 · Clave 2: voto en blanco por comuna
+(() => {
+  const svg = $("#graf4"), orden = Object.keys(COM).map(Number).sort((a, b) => COM[b].boct - COM[a].boct);
+  const W = 80, G = 16, X0 = 60, Y0 = 480, H = v => v / 8 * 330;
+  [0, 2, 4, 6, 8].forEach(v => { mk("line", { x1:X0 - 20, x2:X0 + 15 * (W + G), y1:Y0 - H(v), y2:Y0 - H(v), stroke:"#3A4254", "stroke-width":1.5 }, svg);
+    mk("text", { x:X0 - 30, y:Y0 - H(v) + 7, fill:"#9AA1AE", "font-size":20, "text-anchor":"end" }, svg).textContent = v + "%"; });
+  const bars = orden.map((c, i) => { const x = X0 + i * (W + G), col = SUR.includes(c) ? C.man : C.cel;
+    const r = mk("rect", { x, width:W, rx:8, fill:col, opacity:SUR.includes(c) ? 1 : .7 }, svg);
+    const v = mk("text", { x:x + W / 2, fill:C.pap, "font-size":22, "text-anchor":"middle" }, svg);
+    mk("text", { x:x + W / 2, y:Y0 + 36, fill:SUR.includes(c) ? C.man : C.pap, "font-size":24, "text-anchor":"middle" }, svg).textContent = "C" + c;
+    return { c, r, v }; });
+  mk("text", { x:X0, y:Y0 + 76, fill:"#9AA1AE", "font-size":20 }, svg).textContent = "Comuna";
+  const btn = [...document.querySelectorAll("#ctl4 button")]; let fijo = null;
+  btn.forEach(b => b.addEventListener("click", () => { fijo = b.dataset.k; S[4].set(99); }));
+  const KS = ["b21", "bmay", "boct"];
+  S[4] = { set(t) {
+    // 0-2 s: 2021 · 2,5-4 s: mayo 2025 · 4,5-6 s: octubre 2025
+    let a = 0, b = 0, k = 0;
+    if (fijo && t >= 99) { a = b = KS.indexOf(fijo); }
+    else if (t < 2.5) { a = b = 0; } else if (t < 4.5) { a = 0; b = 1; k = E(t, 2.5, 4); } else { a = 1; b = 2; k = E(t, 4.5, 6); }
+    const cur = k > .5 ? b : a;
+    btn.forEach((x, i) => x.setAttribute("aria-pressed", i === cur));
+    const crece = E(t, .6, 1.8);
+    bars.forEach(({ c, r, v }) => { const val = (COM[c][KS[a]] + (COM[c][KS[b]] - COM[c][KS[a]]) * k) * crece;
+      r.setAttribute("y", Y0 - H(val)); r.setAttribute("height", H(val)); v.setAttribute("y", Y0 - H(val) - 12); v.textContent = dec(val); });
+  } };
+})();
+
+// 6 · Clave 3: el bolsón
+(() => {
+  const B = [["La Libertad Avanza (primera)", TOT.lla, C.lla], ["Extranjeros que no fueron", NO_FUERON, C.man], ["Es Ahora (segunda)", TOT.ea, C.ea], ["Extranjeros que votaron", VOTARON_EXT, C.cel]];
+  $("#barras5").innerHTML = B.map(([n, v, c], i) => `<div class="hb" data-in="${1.4 + i * .3}" style="grid-template-columns:400px 1fr 170px;margin-bottom:18px"><div class="l" style="font-size:25px${c === C.man ? ";font-weight:700" : ""}">${n}</div><div class="t" style="height:44px"><div class="f" style="background:${c}"></div></div><div class="v" style="font-size:26px">${fmt(v)}</div></div>`).join("");
+  const fills = [...document.querySelectorAll("#barras5 .f")];
+  $("#waffle").innerHTML = Array.from({ length:100 }, () => "<i></i>").join("");
+  const dots = [...document.querySelectorAll("#waffle i")];
+  S[5] = { set(t) {
+    $("#n5").textContent = fmt(NO_FUERON * E(t, .3, 1.8));
+    B.forEach(([, v], i) => fills[i].style.width = (v / 500000 * 100 * E(t, 1.6 + i * .3, 3 + i * .3)) + "%");
+    const on = Math.round(15 * E(t, 2, 3.5)); dots.forEach((d, i) => d.classList.toggle("si", i < on));
+  } };
+})();
+
+// 7 · Clave 3: simulador
+(() => {
+  const r6 = $("#r6"), btn = [...document.querySelectorAll("#ctl6 button")]; let modo = "ext", manual = null;
+  btn.forEach(b => b.addEventListener("click", () => { modo = b.dataset.k; S[6].set(99); }));
+  r6.addEventListener("input", () => { manual = +r6.value; S[6].set(99); });
+  $("#barras6").innerHTML = [["La Libertad<br>Avanza", C.lla], ["Es Ahora<br>Buenos Aires", C.ea]].map(([n, c]) => `<div class="hb" style="grid-template-columns:240px 1fr 170px"><div class="l">${n}</div><div class="t"><div class="f" style="background:${c}"></div></div><div class="v">0</div></div>`).join("");
+  const F = [...document.querySelectorAll("#barras6 .f")], V = [...document.querySelectorAll("#barras6 .v")];
+  S[6] = { set(t) {
+    const p = (manual !== null && t >= 99) ? manual : 14.8 + (62.3 - 14.8) * E(t, 2, 6);
+    if (!(manual !== null && t >= 99)) r6.value = p;
+    btn.forEach(b => b.setAttribute("aria-pressed", b.dataset.k === modo));
+    const nuevos = Math.max(0, PADRON_EXT * p / 100 - VOTARON_EXT), sh = REPARTO[modo];
+    const lla = TOT.lla + nuevos * sh.lla, ea = TOT.ea + nuevos * sh.ea;
+    $("#p6").textContent = dec(p) + " %"; $("#nv6").textContent = fmt(nuevos);
+    F[0].style.width = (lla / 620000 * 100) + "%"; F[1].style.width = (ea / 620000 * 100) + "%"; V[0].textContent = fmt(lla); V[1].textContent = fmt(ea);
+    const d = lla - ea;
+    $("#dif6").innerHTML = d >= 0 ? `Diferencia: <b style="color:#B79BE0">${fmt(d)}</b> a favor de La Libertad Avanza` : `Diferencia: <b style="color:${C.ea}">${fmt(-d)}</b> a favor de Es Ahora`;
+    const need = nuevos > 0 ? TOT.lla - TOT.ea : 0, pts = nuevos > 0 ? need / nuevos * 100 : Infinity;
+    $("#emp6").innerHTML = nuevos < 1 ? "Mové la barra para sumar votantes." : pts > 100 ? "Para dar vuelta la elección solo con estos votos, Es Ahora no llega ni aunque los ganara a todos." :
+      `Para dar vuelta la elección solo con estos votos, Es Ahora tendría que sacarle <b style="color:var(--papel)">${dec(pts)} puntos</b> de ventaja a LLA entre los que se suman.`;
+    
+  } };
+})();
+
+// 8 · Clave 4: comunas por una cuadra
+(() => {
+  const AJ = [7, 10, 3, 6], m = mapa("#mapa7");
+  $("#lista7").innerHTML = AJ.map((c, i) => { const r = RES[c], g = ganador(c);
+    return `<div data-in="${1.4 + i * .4}" style="display:grid;grid-template-columns:270px 1fr 200px;align-items:baseline;border-bottom:2px solid var(--linea);padding:8px 0">
+      <span class="dis" style="font-size:42px">Comuna ${c}</span><span class="mono" style="font-size:22px;color:${C[g]}">■ ganó ${g === "lla" ? "LLA" : "Es Ahora"}</span>
+      <span class="num man" style="font-size:54px;text-align:right">${fmt(Math.abs(r.lla - r.ea))}</span></div>`; }).join("") +
+    `<div class="mono" data-in="3.2" style="font-size:20px;color:var(--gris);margin-top:14px;text-align:right">votos de diferencia</div>`;
+  S[7] = { set(t) {
+    for (let c = 1; c <= 15; c++) {
+      const aj = AJ.includes(c), k = E(t, .6, 1.4);
+      m.P[c].setAttribute("fill", aj ? mezcla(C.apa, C.man, E(t, 1.4 + AJ.indexOf(c) * .4, 2 + AJ.indexOf(c) * .4)) : mezcla(C.apa, mezcla(C.apa, C[ganador(c)], .35), k));
+      m.L[c].style.fill = aj ? C.tin : C.pap; m.L[c].style.fontWeight = aj ? 800 : 500;
+      const centro = [3, 5, 9, 15].includes(c) && t > 5.2;
+      m.P[c].style.stroke = centro ? C.ea : C.tin; m.P[c].style.strokeWidth = centro ? 4 + 4 * E(t, 5.2, 5.8) : 3;
+    }
+  } };
+})();
+
+// 9 · Cierre
+(() => {
+  const K = [["El sur dejó de ir a votar", "Cayó 14 puntos desde 2019: son unos 45 mil votantes, tantos como la diferencia de 2025."],
+             ["El blanco se disparó en el sur", "En octubre, casi el doble que en el norte. ¿Enojo, boleta nueva o las dos cosas?"],
+             ["El voto migrante no es automático", "447 mil no fueron, y los que fueron eligieron más a LLA."],
+             ["El mapa del medio", "Cuatro comunas por 1.620 votos y un centro que cambió de color."]];
+  $("#lista8").innerHTML = K.map(([a, b], i) => `<div data-in="${.8 + i * .6}" style="display:flex;gap:34px;align-items:center;margin-bottom:34px">
+    <span class="num" style="flex:none;width:92px;height:92px;border-radius:50%;background:var(--papel);color:var(--celeste);display:grid;place-items:center;font-size:58px">${i + 1}</span>
+    <div><div class="dis" style="font-size:52px;color:var(--tinta)">${a}</div><div class="txt" style="font-size:28px;color:var(--papel);margin-top:6px">${b}</div></div></div>`).join("");
+  S[8] = { set() {} };
+})();
+
+/* ---------- Motor ---------- */
+const SC = [...document.querySelectorAll(".sc")];
+let cur = 0, t0 = 0, vivo = true;
+function setT(i, t) {
+  const sc = SC[i];
+  sc.querySelectorAll("[data-in]").forEach(e => { const k = E(t, +e.dataset.in, +e.dataset.in + .7);
+    e.style.opacity = k; e.style.transform = `translateY(${(1 - k) * 30}px)`; });
+  S[i].set(t);
+}
+function show(i, animar = true) {
+  cur = Math.max(0, Math.min(SC.length - 1, i));
+  SC.forEach((s, k) => s.classList.toggle("on", k === cur));
+  t0 = performance.now(); vivo = animar;
+  if (!animar) setT(cur, 99);
+}
+const DURACION = i => +SC[i].dataset.dur;
+function loop(now) {
+  if (vivo) { const t = (now - t0) / 1000; if (t >= DURACION(cur)) { vivo = false; setT(cur, 99); } else setT(cur, t); }
+  requestAnimationFrame(loop);
+}
+function escalar() { const s = Math.min(innerWidth / 1920, innerHeight / 1080); const st = $("#st");
+  st.style.transform = `scale(${s}) translate(-50%, -50%)`; st.style.transformOrigin = "0 0"; st.style.left = "50%"; st.style.top = "50%";
+  st.style.transform = `translate(-50%, -50%) scale(${s})`; st.style.transformOrigin = "50% 50%"; }
+addEventListener("resize", escalar); escalar();
+addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT") return;
+  if (["ArrowRight", " ", "PageDown"].includes(e.key)) { e.preventDefault(); show(cur + 1); }
+  else if (["ArrowLeft", "PageUp"].includes(e.key)) show(cur - 1);
+  else if (e.key.toLowerCase() === "r") show(cur);
+  else if (e.key.toLowerCase() === "f") document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  else if (/^[1-9]$/.test(e.key)) show(+e.key - 1);
+});
+setTimeout(() => $("#ayuda").style.opacity = 0, 4000);
+// Para exportar: ?render deja la pantalla quieta, sin botones
+if (location.search.includes("render")) { document.body.classList.add("render"); show(0, false); }
+else { show(0); requestAnimationFrame(loop); }
+window.setT = setT; window.show = show; window.DURACION = DURACION; window.N = SC.length;
+</script>
+</body></html>
